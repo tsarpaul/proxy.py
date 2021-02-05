@@ -36,10 +36,9 @@ class OnDiskCacheStore(CacheStore):
         self.cache_file = open(self.cache_file_path, "wb")
 
     def cache_request(self, request: HttpParser) -> Optional[HttpParser]:
-        def cache_request(self, request: HttpParser) -> Optional[HttpParser]:
-            if self.cache_file:
-                self.cache_file.write(request.build())
-                self.cache_file.write(b'\n'+b'-'*30+b'\n')
+        if self.cache_file:
+            self.cache_file.write(request.build())
+            self.cache_file.write(b'\n'+b'-'*30+b'\n')
         return request
 
     def cache_response_chunk(self, chunk: memoryview) -> memoryview:
